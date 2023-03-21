@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HdybKBh2Lp3onQ6I9k2mRckDr4S/4WNjKf9k5K+cer93PjWFaMDgzcL4jTer1HlBYxaDwCmfGgJpu+1ey+aCRQ==",
+  "dgSpecHash": "s7WL3RajglqGzMjSSD0fTxOUgUObzYJ/kSsWbXiXzQxtFdoask+tGSBiGhG1e+OEwmrNePJOGetkbxaAQ6hnIg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo\\KUSYS-Demo.API\\KUSYS-Demo.API.csproj",
+  "projectFilePath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.API\\KUSYS-Demo.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\turgu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\turgu\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
