@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj": {}
+    "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj": {
+    "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Common\\KUSYS-Demo.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj",
-        "projectName": "KUSYS-Demo.Data",
-        "projectPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj",
+        "projectUniqueName": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Common\\KUSYS-Demo.Common.csproj",
+        "projectName": "KUSYS-Demo.Common",
+        "projectPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Common\\KUSYS-Demo.Common.csproj",
         "packagesPath": "C:\\Users\\turgu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo\\KUSYS-Demo.Data\\obj\\",
+        "outputPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\turgu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,79 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj",
+        "projectName": "KUSYS-Demo.Data",
+        "projectPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Data\\KUSYS-Demo.Data.csproj",
+        "packagesPath": "C:\\Users\\turgu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\turgu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Common\\KUSYS-Demo.Common.csproj": {
+                "projectPath": "C:\\Users\\turgu\\source\\repos\\KUSYS-Demo-Git\\KUSYS-Demo\\KUSYS-Demo.Common\\KUSYS-Demo.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
