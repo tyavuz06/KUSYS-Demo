@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KUSYS_Demo.Common.Models
+namespace KUSYS_Demo.Common.DTO
 {
     public class CourseDTO
     {

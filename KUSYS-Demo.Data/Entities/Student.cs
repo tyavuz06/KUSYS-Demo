@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KUSYS_Demo.Data.Entities
 {
-    public class Student
+    public class Student: IEntity
     {
         public Student()
         {
@@ -18,7 +18,7 @@ namespace KUSYS_Demo.Data.Entities
         public string Name { get; set; }
         public string SurName { get; set; }
         public DateTime BirthDate { get; set; }
-        public int IdentityNo { get; set; }
+        public string IdentityNo { get; set; }
 
         public ICollection<Course> Course { get; set; }
         public ICollection<StudentCourse> StudentCourse { get; set; }

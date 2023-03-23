@@ -10,11 +10,20 @@ namespace KUSYS_Demo.Data
 {
     public class KUSYSContext : DbContext
     {
+        public KUSYSContext()
+        {
+
+        }
+
+        public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
+        public virtual DbSet<StudentCourse> StudentCourse { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Server=.\SQLExpress;Database=KUSYSDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-RQH7054;Database=KUSYSDB;Trusted_Connection=True;");
             }
         }
 
@@ -37,6 +46,10 @@ namespace KUSYS_Demo.Data
 
                 entity.Property(e => e.SurName)
                     .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.IdentityNo)
+                    .HasMaxLength(11)
                     .IsUnicode(false);
             });
 

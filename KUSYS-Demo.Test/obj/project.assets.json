@@ -1693,6 +1693,7 @@
           "KUSYS-Demo.Common": "1.0.0",
           "KUSYS-Demo.Data": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0"
         },
         "compile": {
