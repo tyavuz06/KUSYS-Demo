@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,6 @@ namespace KUSYS_Demo.Data.Entities
     {
         public Student()
         {
-            Course = new HashSet<Course>();
             StudentCourse = new HashSet<StudentCourse>();
         }
 
@@ -18,9 +18,10 @@ namespace KUSYS_Demo.Data.Entities
         public string Name { get; set; }
         public string SurName { get; set; }
         public DateTime BirthDate { get; set; }
+
+        [MaxLength(11), MinLength(11)]
         public string IdentityNo { get; set; }
 
-        public ICollection<Course> Course { get; set; }
         public ICollection<StudentCourse> StudentCourse { get; set; }
     }
 }

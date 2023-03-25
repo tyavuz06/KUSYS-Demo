@@ -15,9 +15,9 @@ namespace KUSYS_Demo.Data
 
         }
 
-        public virtual DbSet<Course> Course { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<StudentCourse> StudentCourse { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<StudentCourse> StudentCourses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,8 +38,6 @@ namespace KUSYS_Demo.Data
 
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("Id");
-
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -55,12 +53,14 @@ namespace KUSYS_Demo.Data
 
             modelBuilder.Entity<StudentCourse>(entity =>
             {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+
                 entity.HasKey(e => new { e.StudentId, e.CourseId });
 
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.StudentCourse)
                     .HasForeignKey(d => d.CourseId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_StudentCourse_Course");
 
                 entity.HasOne(d => d.Student)

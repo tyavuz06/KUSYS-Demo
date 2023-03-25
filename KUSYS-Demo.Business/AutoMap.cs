@@ -25,7 +25,9 @@ namespace KUSYS_Demo.Business
             {
                 //Configuring Employee and EmployeeDTO
                 cfg.CreateMap<Student, StudentDTO>().ReverseMap();
+                cfg.CreateMap<Student, StudentDetailDTO>().ReverseMap();
                 cfg.CreateMap<Course, CourseDTO>().ReverseMap();
+                //cfg.CreateMap<List<Student>, List<StudentDTO>>().ReverseMap();
                 //Any Other Mapping Configuration ....
             });
             //Create an Instance of Mapper and return that Instance

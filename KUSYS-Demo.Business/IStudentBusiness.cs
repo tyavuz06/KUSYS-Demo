@@ -10,10 +10,14 @@ namespace KUSYS_Demo.Business
 {
     public interface IStudentBusiness
     {
-        public BaseResponseModel Add(StudentDTO student);
+        public BaseResponseModel Add(StudentDetailDTO student);
 
-        public void Delete();
+        public BaseResponseModel Delete(int id);
 
-        public void Update();
+        public BaseResponseModel Update(StudentDetailDTO student);
+
+        public StudentListGetResponseModel GetList();
+
+        public StudentDetailGetResponeModel GetDetail(int id);
     }
 }

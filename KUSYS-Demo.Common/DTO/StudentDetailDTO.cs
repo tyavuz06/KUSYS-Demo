@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace KUSYS_Demo.Common.DTO
 {
-    public class StudentDTO
+    public class StudentDetailDTO
     {
-        public StudentDTO() { }
-
+        public StudentDetailDTO() { }
         public int Id { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
-        //public string IdentityNo { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string IdentityNo { get; set; }
     }
 }

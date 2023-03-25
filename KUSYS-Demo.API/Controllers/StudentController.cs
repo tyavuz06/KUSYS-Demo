@@ -1,6 +1,7 @@
 ﻿using KUSYS_Demo.Business;
 using KUSYS_Demo.Common;
 using KUSYS_Demo.Common.DTO;
+using KUSYS_Demo.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ namespace KUSYS_Demo.API.Controllers
 
         [HttpPut]
         [Route("Create")]
-        public IActionResult Create(StudentDTO student)
+        public IActionResult Create(StudentDetailDTO student)
         {
             if (ModelState.IsValid)
             {
@@ -40,18 +41,85 @@ namespace KUSYS_Demo.API.Controllers
 
         [HttpDelete]
         [Route("Delete")]
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            _studentBusiness.Delete();
-            return Ok();
+            var response = _studentBusiness.Delete(id);
+
+            switch (response.Code)
+            {
+                case (int)SystemConstans.CODES.SUCCESS:
+                    return Ok(response);
+                case (int)SystemConstans.CODES.NOTFOUND:
+                    return NotFound(response);
+                case (int)SystemConstans.CODES.SYSTEMERROR:
+                    return StatusCode(500, response);
+                default:
+                    return NotFound();
+            }
         }
 
         [HttpPost]
         [Route("Update")]
-        public IActionResult Update()
+        public IActionResult Update(StudentDetailDTO student)
         {
-            _studentBusiness.Update();
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                var response = _studentBusiness.Update(student);
+
+                switch (response.Code)
+                {
+                    case (int)SystemConstans.CODES.SUCCESS:
+                        return Ok(response);
+                    case (int)SystemConstans.CODES.NOTFOUND:
+                        return NotFound(response);
+                    case (int)SystemConstans.CODES.SYSTEMERROR:
+                        return StatusCode(500, response);
+                    default:
+                        return NotFound();
+                }
+            }
+
+            return StatusCode(200, "Model Is Not Valid");
+        }
+
+        [ResponseCache(Duration = 500)]
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult GetAll()
+        {
+            var response = _studentBusiness.GetList();
+
+            switch (response.Code)
+            {
+                case (int)SystemConstans.CODES.SUCCESS:
+                    return Ok(response);
+                case (int)SystemConstans.CODES.NOTFOUND:
+                    return NotFound(response);
+                case (int)SystemConstans.CODES.SYSTEMERROR:
+                    return StatusCode(500, response);
+                default:
+                    return NotFound();
+            }
+        }
+
+        [ResponseCache(Duration = 1000)]
+        [HttpGet]
+        [Route("GetDetail")]
+        public IActionResult GetDetail(int id)
+        {
+            var response = _studentBusiness.GetDetail(id);
+
+            switch (response.Code)
+            {
+                case (int)SystemConstans.CODES.SUCCESS:
+                    return Ok(response);
+                case (int)SystemConstans.CODES.NOTFOUND:
+                    return NotFound(response);
+                case (int)SystemConstans.CODES.SYSTEMERROR:
+                    return StatusCode(500, response);
+                default:
+                    return NotFound();
+            }
         }
     }
 }

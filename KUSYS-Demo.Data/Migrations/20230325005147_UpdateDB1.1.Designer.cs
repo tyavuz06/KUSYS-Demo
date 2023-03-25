@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KUSYS_Demo.Data.Migrations
 {
     [DbContext(typeof(KUSYSContext))]
-    [Migration("20230323042756_CreateKSUYSDB")]
-    partial class CreateKSUYSDB
+    [Migration("20230325005147_UpdateDB1.1")]
+    partial class UpdateDB11
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,22 +38,16 @@ namespace KUSYS_Demo.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("KUSYS_Demo.Data.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -62,7 +56,9 @@ namespace KUSYS_Demo.Data.Migrations
 
                     b.Property<string>("IdentityNo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(11)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(11)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -78,7 +74,7 @@ namespace KUSYS_Demo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("KUSYS_Demo.Data.Entities.StudentCourse", b =>
@@ -90,20 +86,16 @@ namespace KUSYS_Demo.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.HasKey("StudentId", "CourseId");
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("StudentCourse");
-                });
-
-            modelBuilder.Entity("KUSYS_Demo.Data.Entities.Course", b =>
-                {
-                    b.HasOne("KUSYS_Demo.Data.Entities.Student", null)
-                        .WithMany("Course")
-                        .HasForeignKey("StudentId");
+                    b.ToTable("StudentCourses");
                 });
 
             modelBuilder.Entity("KUSYS_Demo.Data.Entities.StudentCourse", b =>
@@ -111,6 +103,7 @@ namespace KUSYS_Demo.Data.Migrations
                     b.HasOne("KUSYS_Demo.Data.Entities.Course", "Course")
                         .WithMany("StudentCourse")
                         .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_StudentCourse_Course");
 
@@ -133,8 +126,6 @@ namespace KUSYS_Demo.Data.Migrations
 
             modelBuilder.Entity("KUSYS_Demo.Data.Entities.Student", b =>
                 {
-                    b.Navigation("Course");
-
                     b.Navigation("StudentCourse");
                 });
 #pragma warning restore 612, 618
