@@ -8,6 +8,8 @@ namespace KUSYS_Demo.Common.DTO
 {
     public class CourseDTO
     {
-        public string? Name { get; set; }
+        public CourseDTO() { }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

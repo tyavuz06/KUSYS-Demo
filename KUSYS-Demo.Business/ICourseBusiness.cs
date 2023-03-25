@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using KUSYS_Demo.Common.DTO;
+using KUSYS_Demo.Common.Models;
 
 namespace KUSYS_Demo.Business
 {
     public interface ICourseBusiness
     {
-        public void Add();
+        public BaseResponseModel Add(CourseDTO course);
 
-        public void Delete();
+        public BaseResponseModel Delete(int id);
 
-        public void Update();
+        public BaseResponseModel Update(CourseDTO course);
     }
 }

@@ -17,9 +17,9 @@ namespace KUSYS_Demo.Common
 
         public static Dictionary<int, string> ERROR_MESSAGE = new Dictionary<int, string>
         {
-            {1,"İşlem başarılı" },
-            {2,"Sistem Hatası" },
-            {3,"Kullanıcı Bulunamadı" }
+            {1,"İşlem Başarılı!" },
+            {2,"Sistem Hatası!" },
+            {3,"İşlem İçin Detay Bulunamadı!" }
         };
     }
 }

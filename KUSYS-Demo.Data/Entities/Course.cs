@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KUSYS_Demo.Data.Entities
 {
-    public class Course
+    public class Course: IEntity
     {
         public Course()
         {

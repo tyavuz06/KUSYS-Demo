@@ -16,6 +16,7 @@ builder.Host.ConfigureServices(services =>
     services.AddSingleton<IStudentBusiness, StudentBusiness>();
     services.AddSingleton<ICourseBusiness, CourseBusiness>();
     services.AddSingleton<IStudentDal, StudentDal>();
+    services.AddSingleton<ICourseDal, CourseDal>();
 });
 
 

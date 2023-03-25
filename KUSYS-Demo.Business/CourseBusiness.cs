@@ -1,26 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using KUSYS_Demo.Common.DTO;
+using KUSYS_Demo.Common.Models;
+using KUSYS_Demo.Data.Entities;
+using KUSYS_Demo.Data.Repository;
 
 namespace KUSYS_Demo.Business
 {
     public class CourseBusiness : ICourseBusiness
     {
-        public void Add()
+        private readonly ICourseDal _service;
+        public CourseBusiness(ICourseDal service)
         {
-            throw new NotImplementedException();
+            _service = service;
         }
 
-        public void Delete()
+        public BaseResponseModel Add(CourseDTO course)
         {
-            throw new NotImplementedException();
+            var baseResponseModel = new BaseResponseModel();
+
+            try
+            {
+                var entity = AutoMap.AutoMapper.Map<CourseDTO, Course>(course);
+                _service.Add(entity);
+                baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                baseResponseModel.SetCode(Common.SystemConstans.CODES.SYSTEMERROR);
+            }
+
+            return baseResponseModel;
         }
 
-        public void Update()
+        public BaseResponseModel Delete(int id)
         {
-            throw new NotImplementedException();
+            var baseResponseModel = new BaseResponseModel();
+
+            try
+            {
+                var entity = _service.Get(x => x.Id == id);
+
+                if (entity != null)
+                {
+                    _service.Delete(entity);
+                    baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
+                }
+                else
+                    baseResponseModel.SetCode(Common.SystemConstans.CODES.NOTFOUND);
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                baseResponseModel.SetCode(Common.SystemConstans.CODES.SYSTEMERROR);
+            }
+
+            return baseResponseModel;
+        }
+
+        public BaseResponseModel Update(CourseDTO course)
+        {
+            var baseResponseModel = new BaseResponseModel();
+
+            try
+            {
+                var entity = _service.Get(x => x.Id == course.Id);
+
+                if (entity != null)
+                {
+                    entity = AutoMap.AutoMapper.Map<CourseDTO, Course>(course);
+                    _service.Update(entity);
+                    baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
+                }
+                else
+                    baseResponseModel.SetCode(Common.SystemConstans.CODES.NOTFOUND);
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                baseResponseModel.SetCode(Common.SystemConstans.CODES.SYSTEMERROR);
+            }
+
+            return baseResponseModel;
         }
     }
 }

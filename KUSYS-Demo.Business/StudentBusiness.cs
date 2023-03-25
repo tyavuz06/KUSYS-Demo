@@ -1,13 +1,7 @@
 ﻿using KUSYS_Demo.Common.DTO;
 using KUSYS_Demo.Common.Models;
-using KUSYS_Demo.Data;
 using KUSYS_Demo.Data.Entities;
 using KUSYS_Demo.Data.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KUSYS_Demo.Business
 {
