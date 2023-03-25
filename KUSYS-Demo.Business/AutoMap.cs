@@ -22,7 +22,9 @@ namespace KUSYS_Demo.Business
                 cfg.CreateMap<Student, StudentDTO>().ReverseMap();
                 cfg.CreateMap<Student, StudentDetailDTO>().ReverseMap();
                 cfg.CreateMap<Course, CourseDTO>().ReverseMap();
-                cfg.CreateMap<StudentCourse, StudentCourseDTO>().ReverseMap();
+                cfg.CreateMap<StudentCourse, StudentCourseDTO>()
+                .ForMember(dest => dest.CourseName, act => act.MapFrom(src => src.Course.Name))
+                .ForMember(dest => dest.StudentName, act => act.MapFrom(src => src.Student.Name));
                 //cfg.CreateMap<List<Student>, List<StudentDTO>>().ReverseMap();
                 //Any Other Mapping Configuration ....
             });

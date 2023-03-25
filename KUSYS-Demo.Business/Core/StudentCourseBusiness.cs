@@ -90,12 +90,11 @@ namespace KUSYS_Demo.Business.Core
 
             try
             {
-                var entity = _service.EagerLoadingWithParams(null, x => x.Student, x => x.Course);
+                var list = _service.EagerLoadingWithParams(null, x => x.Student, x => x.Course);
 
-                if (entity != null)
+                if (list != null)
                 {
-                    //entity = AutoMap.AutoMapper.Map<StudentCourseDTO, StudentCourse>(model);
-                    //_service.Update(entity);
+                    responseModel.List = AutoMap.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);                    
                     responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
                 else
