@@ -1,4 +1,5 @@
 ﻿using KUSYS_Demo.Data.Entities;
+using KUSYS_Demo.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KUSYS_Demo.Data.Repository
+namespace KUSYS_Demo.Data.Repository.Core
 {
     public class RepositoryBase<TEntity, TContext> : IEntityRepository<TEntity> where TEntity : class, IEntity, new() where TContext : DbContext, new()
     {

@@ -1,9 +1,6 @@
-﻿using KUSYS_Demo.Business;
+﻿using KUSYS_Demo.Business.Interfaces;
 using KUSYS_Demo.Common;
 using KUSYS_Demo.Common.DTO;
-using KUSYS_Demo.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KUSYS_Demo.API.Controllers

@@ -1,5 +1,8 @@
 using KUSYS_Demo.Business;
-using KUSYS_Demo.Data.Repository;
+using KUSYS_Demo.Business.Core;
+using KUSYS_Demo.Business.Interfaces;
+using KUSYS_Demo.Data.Repository.Core;
+using KUSYS_Demo.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +18,8 @@ builder.Host.ConfigureServices(services =>
 {
     services.AddSingleton<IStudentBusiness, StudentBusiness>();
     services.AddSingleton<ICourseBusiness, CourseBusiness>();
+    services.AddSingleton<IStudentCourseBusiness, StudentCourseBusiness>();
+    services.AddSingleton<IStudentCourseDal, StudentCourseDal>();
     services.AddSingleton<IStudentDal, StudentDal>();
     services.AddSingleton<ICourseDal, CourseDal>();
 });

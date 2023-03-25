@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KUSYS_Demo.Data.Repository
+namespace KUSYS_Demo.Data.Repository.Interfaces
 {
     public interface IEntityRepository<T> where T : class, IEntity, new()
     {

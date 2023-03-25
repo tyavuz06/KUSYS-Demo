@@ -1,13 +1,14 @@
 ﻿using KUSYS_Demo.Data.Entities;
+using KUSYS_Demo.Data.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KUSYS_Demo.Data.Repository
+namespace KUSYS_Demo.Data.Repository.Core
 {
-    public interface ICourseDal: IEntityRepository<Course>
+    public class CourseDal : RepositoryBase<Course, KUSYSContext>, ICourseDal
     {
     }
 }

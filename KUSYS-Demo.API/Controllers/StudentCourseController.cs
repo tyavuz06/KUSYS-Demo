@@ -5,19 +5,21 @@ using KUSYS_Demo.Business.Interfaces;
 
 namespace KUSYS_Demo.API.Controllers
 {
-    public class CourseController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class StudentCourseController : ControllerBase
     {
-        private readonly ICourseBusiness _courseBusiness;
+        private readonly IStudentCourseBusiness _studentCourseBusiness;
 
-        public CourseController(ICourseBusiness courseBusiness) => (_courseBusiness) = (courseBusiness);
+        public StudentCourseController(IStudentCourseBusiness studentCourseBusiness) => (_studentCourseBusiness) = (studentCourseBusiness);
 
         [HttpPut]
         [Route("Create")]
-        public IActionResult Create(CourseDTO course)
+        public IActionResult Create(StudentCourseDTO course)
         {
             if (ModelState.IsValid)
             {
-                var response = _courseBusiness.Add(course);
+                var response = _studentCourseBusiness.Add(course);
                 switch (response.Code)
                 {
                     case (int)SystemConstans.CODES.SUCCESS:
@@ -38,7 +40,7 @@ namespace KUSYS_Demo.API.Controllers
         [Route("Delete")]
         public IActionResult Delete(int id)
         {
-            var response = _courseBusiness.Delete(id);
+            var response = _studentCourseBusiness.Delete(id);
 
             switch (response.Code)
             {
@@ -55,11 +57,11 @@ namespace KUSYS_Demo.API.Controllers
 
         [HttpPost]
         [Route("Update")]
-        public IActionResult Update(CourseDTO course)
+        public IActionResult Update(StudentCourseDTO course)
         {
             if (ModelState.IsValid)
             {
-                var response = _courseBusiness.Update(course);
+                var response = _studentCourseBusiness.Update(course);
 
                 switch (response.Code)
                 {
@@ -75,6 +77,25 @@ namespace KUSYS_Demo.API.Controllers
             }
 
             return StatusCode(200, "Model Is Not Valid");
+        }
+
+        [HttpGet]
+        [Route("GetList")]
+        public IActionResult GetList()
+        {
+            var response = _studentCourseBusiness.GetList();
+
+            switch (response.Code)
+            {
+                case (int)SystemConstans.CODES.SUCCESS:
+                    return Ok(response);
+                case (int)SystemConstans.CODES.NOTFOUND:
+                    return NotFound(response);
+                case (int)SystemConstans.CODES.SYSTEMERROR:
+                    return StatusCode(500, response);
+                default:
+                    return NotFound();
+            }
         }
     }
 }

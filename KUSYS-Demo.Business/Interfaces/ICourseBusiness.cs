@@ -1,7 +1,7 @@
 ﻿using KUSYS_Demo.Common.DTO;
 using KUSYS_Demo.Common.Models;
 
-namespace KUSYS_Demo.Business
+namespace KUSYS_Demo.Business.Interfaces
 {
     public interface ICourseBusiness
     {

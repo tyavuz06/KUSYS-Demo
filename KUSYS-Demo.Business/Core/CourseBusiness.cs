@@ -1,9 +1,10 @@
-﻿using KUSYS_Demo.Common.DTO;
+﻿using KUSYS_Demo.Business.Interfaces;
+using KUSYS_Demo.Common.DTO;
 using KUSYS_Demo.Common.Models;
 using KUSYS_Demo.Data.Entities;
-using KUSYS_Demo.Data.Repository;
+using KUSYS_Demo.Data.Repository.Interfaces;
 
-namespace KUSYS_Demo.Business
+namespace KUSYS_Demo.Business.Core
 {
     public class CourseBusiness : ICourseBusiness
     {

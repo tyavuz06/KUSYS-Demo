@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KUSYS_Demo.Data.Repository
+namespace KUSYS_Demo.Data.Repository.Interfaces
 {
-    public class CourseDal: RepositoryBase<Course, KUSYSContext>, ICourseDal
+    public interface ICourseDal : IEntityRepository<Course>
     {
     }
 }
