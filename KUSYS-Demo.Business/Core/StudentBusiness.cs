@@ -9,9 +9,11 @@ namespace KUSYS_Demo.Business.Core
     public class StudentBusiness : IStudentBusiness
     {
         private readonly IStudentDal _service;
-        public StudentBusiness(IStudentDal service)
+        private readonly IMapper _mapper;
+        public StudentBusiness(IStudentDal service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         public BaseResponseModel Add(StudentDetailDTO student)
@@ -20,7 +22,7 @@ namespace KUSYS_Demo.Business.Core
 
             try
             {
-                var entity = AutoMap.AutoMapper.Map<StudentDetailDTO, Student>(student);
+                var entity = _mapper.AutoMapper.Map<StudentDetailDTO, Student>(student);
                 _service.Add(entity);
                 baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
             }
@@ -68,7 +70,7 @@ namespace KUSYS_Demo.Business.Core
 
                 if (entity != null)
                 {
-                    responseModel.Student = AutoMap.AutoMapper.Map<Student, StudentDetailDTO>(entity);
+                    responseModel.Student = _mapper.AutoMapper.Map<Student, StudentDetailDTO>(entity);
                     responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
                 else
@@ -93,7 +95,7 @@ namespace KUSYS_Demo.Business.Core
 
                 if (list != null)
                 {
-                    responseModel.StudentList = AutoMap.AutoMapper.Map<List<Student>, List<StudentDTO>>(list);
+                    responseModel.StudentList = _mapper.AutoMapper.Map<List<Student>, List<StudentDTO>>(list);
                     responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
                 else
@@ -118,7 +120,7 @@ namespace KUSYS_Demo.Business.Core
 
                 if (entity != null)
                 {
-                    entity = AutoMap.AutoMapper.Map<StudentDetailDTO, Student>(student);
+                    entity = _mapper.AutoMapper.Map<StudentDetailDTO, Student>(student);
                     _service.Update(entity);
                     baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }

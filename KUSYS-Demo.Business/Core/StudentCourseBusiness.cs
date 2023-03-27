@@ -9,9 +9,11 @@ namespace KUSYS_Demo.Business.Core
     public class StudentCourseBusiness : IStudentCourseBusiness
     {
         private readonly IStudentCourseDal _service;
-        public StudentCourseBusiness(IStudentCourseDal service)
+        private readonly IMapper _mapper;
+        public StudentCourseBusiness(IStudentCourseDal service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         public BaseResponseModel Add(StudentCourseDTO model)
@@ -20,7 +22,7 @@ namespace KUSYS_Demo.Business.Core
 
             try
             {
-                var entity = AutoMap.AutoMapper.Map<StudentCourseDTO, StudentCourse>(model);
+                var entity = _mapper.AutoMapper.Map<StudentCourseDTO, StudentCourse>(model);
                 _service.Add(entity);
                 baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
             }
@@ -68,7 +70,7 @@ namespace KUSYS_Demo.Business.Core
 
                 if (entity != null)
                 {
-                    entity = AutoMap.AutoMapper.Map<StudentCourseDTO, StudentCourse>(model);
+                    entity = _mapper.AutoMapper.Map<StudentCourseDTO, StudentCourse>(model);
                     _service.Update(entity);
                     baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
@@ -94,7 +96,7 @@ namespace KUSYS_Demo.Business.Core
 
                 if (list != null)
                 {
-                    responseModel.List = AutoMap.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);                    
+                    responseModel.List = _mapper.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);
                     responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
                 else

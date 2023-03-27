@@ -35,9 +35,10 @@ builder.Host.ConfigureServices(services =>
     services.AddSingleton<IStudentCourseDal, StudentCourseDal>();
     services.AddSingleton<IStudentDal, StudentDal>();
     services.AddSingleton<ICourseDal, CourseDal>();
+    services.AddSingleton<IMapper, AutoMap>();
 });
 
-var mapper = new AutoMap();
+//var mapper = new AutoMap();
 new DBInitializer();
 
 var app = builder.Build();

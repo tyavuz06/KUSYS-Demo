@@ -9,9 +9,11 @@ namespace KUSYS_Demo.Business.Core
     public class CourseBusiness : ICourseBusiness
     {
         private readonly ICourseDal _service;
-        public CourseBusiness(ICourseDal service)
+        private readonly IMapper _mapper;
+        public CourseBusiness(ICourseDal service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         public BaseResponseModel Add(CourseDTO course)
@@ -20,7 +22,7 @@ namespace KUSYS_Demo.Business.Core
 
             try
             {
-                var entity = AutoMap.AutoMapper.Map<CourseDTO, Course>(course);
+                var entity = _mapper.AutoMapper.Map<CourseDTO, Course>(course);
                 _service.Add(entity);
                 baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
             }
@@ -68,7 +70,7 @@ namespace KUSYS_Demo.Business.Core
 
                 if (entity != null)
                 {
-                    entity = AutoMap.AutoMapper.Map<CourseDTO, Course>(course);
+                    entity = _mapper.AutoMapper.Map<CourseDTO, Course>(course);
                     _service.Update(entity);
                     baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }

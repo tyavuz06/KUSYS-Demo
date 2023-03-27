@@ -4,9 +4,9 @@ using KUSYS_Demo.Data.Entities;
 
 namespace KUSYS_Demo.Business
 {
-    public class AutoMap
+    public class AutoMap : IMapper
     {
-        public static Mapper AutoMapper { get; set; }
+        public Mapper AutoMapper { get; set; }
 
         public AutoMap()
         {
