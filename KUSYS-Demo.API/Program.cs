@@ -1,6 +1,7 @@
 using KUSYS_Demo.Business;
 using KUSYS_Demo.Business.Core;
 using KUSYS_Demo.Business.Interfaces;
+using KUSYS_Demo.Data;
 using KUSYS_Demo.Data.Repository.Core;
 using KUSYS_Demo.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -36,9 +37,8 @@ builder.Host.ConfigureServices(services =>
     services.AddSingleton<ICourseDal, CourseDal>();
 });
 
-
-
 var mapper = new AutoMap();
+new DBInitializer();
 
 var app = builder.Build();
 
