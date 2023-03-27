@@ -13,6 +13,11 @@ namespace KUSYS_Demo.API.Controllers
 
         public StudentCourseController(IStudentCourseBusiness studentCourseBusiness) => (_studentCourseBusiness) = (studentCourseBusiness);
 
+        /// <summary>
+        /// Create a new Student-Course Match
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns>IActionResult</returns>
         [HttpPut]
         [Route("Create")]
         public IActionResult Create(StudentCourseDTO course)
@@ -36,6 +41,11 @@ namespace KUSYS_Demo.API.Controllers
             return StatusCode(200, "Model Is Not Valid");
         }
 
+        /// <summary>
+        /// Deletes a Student-Course Match
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>IActionResult</returns>
         [HttpDelete]
         [Route("Delete")]
         public IActionResult Delete(int id)
@@ -55,6 +65,11 @@ namespace KUSYS_Demo.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a Student-Course Match
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("Update")]
         public IActionResult Update(StudentCourseDTO course)
@@ -79,6 +94,11 @@ namespace KUSYS_Demo.API.Controllers
             return StatusCode(200, "Model Is Not Valid");
         }
 
+        /// <summary>
+        /// Gets AllStudent-Course Matches
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         [Route("GetList")]
         public IActionResult GetList()

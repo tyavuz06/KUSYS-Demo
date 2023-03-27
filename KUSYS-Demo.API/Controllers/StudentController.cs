@@ -13,6 +13,11 @@ namespace KUSYS_Demo.API.Controllers
 
         public StudentController(IStudentBusiness studentBusiness) => (_studentBusiness) = (studentBusiness);
 
+        /// <summary>
+        /// Creates a new Student
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns>IActionResult</returns>
         [HttpPut]
         [Route("Create")]
         public IActionResult Create(StudentDetailDTO student)
@@ -36,6 +41,11 @@ namespace KUSYS_Demo.API.Controllers
             return StatusCode(200, "Model Is Not Valid");
         }
 
+         /// <summary>
+        /// Deletes a new Student
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns>IActionResult</returns>
         [HttpDelete]
         [Route("Delete")]
         public IActionResult Delete(int id)
@@ -55,6 +65,11 @@ namespace KUSYS_Demo.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Updates a new Student
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns>IActionResult</returns>
         [HttpPost]
         [Route("Update")]
         public IActionResult Update(StudentDetailDTO student)
@@ -79,7 +94,11 @@ namespace KUSYS_Demo.API.Controllers
             return StatusCode(200, "Model Is Not Valid");
         }
 
-        [ResponseCache(Duration = 500)]
+        /// <summary>
+        /// Gets All Student List
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns>IActionResult</returns>
         [HttpGet]
         [Route("GetAll")]
         public IActionResult GetAll()
@@ -99,6 +118,11 @@ namespace KUSYS_Demo.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets Detail of a Student
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns>IActionResult</returns>
         [ResponseCache(Duration = 1000)]
         [HttpGet]
         [Route("GetDetail")]

@@ -11,8 +11,13 @@ namespace KUSYS_Demo.API.Controllers
 
         public CourseController(ICourseBusiness courseBusiness) => (_courseBusiness) = (courseBusiness);
 
+        /// <summary>
+        /// Create Course Element
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         [HttpPut]
-        [Route("Create")]
+        [Route("Create")]      
         public IActionResult Create(CourseDTO course)
         {
             if (ModelState.IsValid)
@@ -34,6 +39,11 @@ namespace KUSYS_Demo.API.Controllers
             return StatusCode(200, "Model Is Not Valid");
         }
 
+        /// <summary>
+        /// Delete Course Element
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("Delete")]
         public IActionResult Delete(int id)
@@ -53,6 +63,11 @@ namespace KUSYS_Demo.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Update Course Element
+        /// </summary>
+        /// <param name="course"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Update")]
         public IActionResult Update(CourseDTO course)
