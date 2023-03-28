@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom';
 
 export class Navbar extends Component {
     constructor(props) {
@@ -16,21 +16,22 @@ export class Navbar extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <a className="navbar-brand" href="#">{title}</a>
+                        <a className="navbar-brand">{title}</a>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <a className="nav-link active" aria-current="page" href="#">Öğrenci Listesi</a>
+                                    <Link to="/" className="nav-link active" aria-current="page">Öğrenci Listesi</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" aria-current="page" href="#">Öğrenci Ders Eşleştirme</a>
+                                    <Link to="/matchList" className="nav-link " aria-current="page">Öğrenci Ders Seçim Listesi</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" aria-current="page" href="#">Öğrenci Ders Seçim Listesi</a>
+                                    <Link to="/test" className="nav-link " aria-current="page">Öğrenci Ders Seçimi</Link>
                                 </li>
+
                                 {/* <li class="nav-item">
                                     <a class="nav-link" href="#">Link</a>
                                 </li> */}

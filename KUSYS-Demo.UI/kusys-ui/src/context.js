@@ -13,14 +13,14 @@ const reducer = (state, action) => {
             return {
                 students: [...state.students, action.payload]
             }
-        case "GET_STUDENT":        
+        case "GET_STUDENT":
             return {
                 ...state,
-                id: student.id,
-                name: student.name,
-                surName: student.surName,
-                identityNo: student.identityNo,
-                birthDate: student.birthDate
+                // id: student.id,
+                // name: student.name,
+                // surName: student.surName,
+                // identityNo: student.identityNo,
+                // birthDate: student.birthDate
             }
         case "EDIT_STUDENT":
             let student = action.payload.data.student;
@@ -35,11 +35,11 @@ const reducer = (state, action) => {
                 isEdit: true
             }
         case "EDITED_STUDENT":
-            let data = state.students.filter(x=>x.id != action.payload.id);
+            let data = state.students.filter(x => x.id !== action.payload.id);
             debugger;
             return {
                 ...state,
-                students:  [...data, action.payload],
+                students: [...data, action.payload],
                 isEdit: false,
                 visible: !state.visible,
             }
@@ -55,6 +55,11 @@ const reducer = (state, action) => {
                 ...state,
                 [keys[0]]: action.payload[keys]
             }
+        case "STUDENT_COURSE_LIST":
+            return {
+                ...state,
+                studentCourseList: action.payload
+            }
         default:
             return state;
     }
@@ -63,6 +68,8 @@ const reducer = (state, action) => {
 export class AppProvider extends Component {
     state = {
         students: [
+        ],
+        studentCourseList:[
         ],
         visible: false,
         isVisible: false,
@@ -79,7 +86,7 @@ export class AppProvider extends Component {
 
     componentDidMount = async () => {
         let response = await axios.get("https://localhost:7212/api/Student/GetAll");
-        console.log(response)
+
         this.setState({
             students: response.data.studentList
         });

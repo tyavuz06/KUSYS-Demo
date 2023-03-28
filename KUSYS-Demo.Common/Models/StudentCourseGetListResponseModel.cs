@@ -11,6 +11,6 @@ namespace KUSYS_Demo.Common.Models
     {
         public StudentCourseGetListResponseModel() { }
 
-        public List<StudentCourseDTO> List { get; set; }
+        public object List { get; set; }
     }
 }

@@ -96,7 +96,10 @@ namespace KUSYS_Demo.Business.Core
 
                 if (list != null)
                 {
-                    responseModel.List = _mapper.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);
+
+                    var mapped = _mapper.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);
+                    responseModel.List = mapped.GroupBy(x => new { x.StudentId, x.StudentName }, x => x.CourseName, (key, g) => new { StudentId = key.StudentId, StudentName = key.StudentName, List = g.ToList() }) ;
+                    
                     responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
                 else

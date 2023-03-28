@@ -24,6 +24,7 @@ namespace KUSYS_Demo.Business.Core
             {
                 var entity = _mapper.AutoMapper.Map<StudentDetailDTO, Student>(student);
                 _service.Add(entity);
+                baseResponseModel.Id = entity.Id;
                 baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
             }
             catch (Exception ex)

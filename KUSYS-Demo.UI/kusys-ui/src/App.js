@@ -1,34 +1,27 @@
 import { Component } from 'react';
 import './App.css';
-import AddStudent from './components/AddStudent';
 import Navbar from './components/Navbar';
 import { StudentList } from './components/StudentList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import StudentCourseMatchedList from './components/StudentCourseMatchedList';
+import AddStudent from './components/AddStudent';
 
 class App extends Component {
-  render(){
+  render() {
     return (
-      <div className="App">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
-        <Navbar title="KUSYS-DEMO" />
-        <hr/>
-        <AddStudent/>
-        <StudentList/>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar title="KUSYS-DEMO" />
+          <hr />
+          <Routes>
+            <Route path='/' Component={StudentList} />
+            <Route path='/matchList' Component={StudentCourseMatchedList} />
+            <Route path='/test' Component={AddStudent} />
+          </Routes>
+        </div>
+      </BrowserRouter>
     );
-  }  
+  }
 }
 
 export default App;
