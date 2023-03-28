@@ -19,46 +19,54 @@ const Animation = posed.div({
 });
 
 export class Student extends Component {
-    getDetail = (e) => {
-    }
-
     state = {
-        isVisible: false
+        isVisible: false,
+        student:{}
     }
 
-    onClickEvent = () => {
-        this.setState({
-            isVisible: !this.state.isVisible
-        })
-    }
-
-    onDeleteStudent = async (dispatch, e) => {
+    onClickEvent = async () => {        
         const { student } = this.props;
-        await axios.delete(`https://localhost:7212/api/Student/Delete?id=${student.id}`)
+        let response = await axios.get(`https://localhost:7212/api/Student/GetDetail?id=${student.id}`)
+        this.setState({
+            isVisible: !this.state.isVisible,
+            student: response.data.student
+        });
+    }
 
-        dispatch({ type: "DELETE_STUDENT", payload: student.id })
+    onDeleteStudent = async (dispatch, id, e) => {
+        await axios.delete(`https://localhost:7212/api/Student/Delete?id=${id}`)
+
+        dispatch({ type: "DELETE_STUDENT", payload: id })
+    }
+
+    onEditStudent = async (dispatch, id, e) => {
+        let response = await axios.get(`https://localhost:7212/api/Student/GetDetail?id=${id}`)
+
+        dispatch({ type: "EDIT_STUDENT", payload: response })
     }
 
     render() {
-        const { student } = this.props;
         const { isVisible } = this.state;
+        const { student } = this.props;
         return (<AppConsumer>
             {
                 value => {
-                    const { dispatch } = value;
+                    const { dispatch} = value;
                     return (
                         <div className='col-md-8 mb-4' style={{ marginLeft: '20px' }}>
                             <div className='card' style={isVisible ? { backgroundColor: "#62848d", color: "white" } : null} onClick={this.onClickEvent}>
-                                <div className='card-header d-flex justify-content-between'>
-                                    <h4 className='d-inline'> {isVisible ? <i className="fa-solid fa-angle-up"></i> : <i className="fa-solid fa-angle-down"></i>} {student.name} {student.surName} </h4>
-                                    <i className='far fa-trash-alt' style={{ cursor: "pointer" }} onClick={this.onDeleteStudent.bind(this, dispatch)}></i>
+                                <div className='card-header justify-content-between'>
+                                    {isVisible ? <i className="fa-solid fa-angle-up mt-2" style={{ float: "left" }}></i> : <i className="fa-solid fa-angle-down mt-2" style={{ float: "left" }}></i>}
+                                    <h4 className='d-inline'>  {student.name} {student.surName} </h4>
+                                    <i className="fa-solid fa-user-pen mt-2" style={{ cursor: "pointer", float: "right", marginLeft: "5px" }} onClick={this.onEditStudent.bind(this, dispatch, student.id)}></i>
+                                    <i className='far fa-trash-alt mt-2' style={{ cursor: "pointer", float: "right", marginLeft: "5px" }} onClick={this.onDeleteStudent.bind(this, dispatch, student.id)}></i>
                                 </div>
                                 <Animation pose={isVisible ? "visible" : "hidden"}>
                                     <div className='card-body'>
-                                        <p className='card-text'>Name: {student.name}</p>
-                                        <p className='card-text'>SurName: {student.surName}</p>
-                                        <p className='card-text'>Birth Date: {student.birthDate}</p>
-                                        <p className='card-text'>Identity Number: {student.identityNo}</p>
+                                        <p className='card-text'>Name: {this.state.student.name}</p>
+                                        <p className='card-text'>SurName: {this.state.student.surName}</p>
+                                        <p className='card-text'>Birth Date: {this.state.student.birthDate}</p>
+                                        <p className='card-text'>Identity Number: {this.state.student.identityNo}</p>
                                     </div>
                                 </Animation>
                             </div>
