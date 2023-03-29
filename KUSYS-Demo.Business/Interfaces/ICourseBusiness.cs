@@ -25,5 +25,12 @@ namespace KUSYS_Demo.Business.Interfaces
         /// <param name="course">It Take CourseDTO Model</param>
         /// <returns>BaseResponseModel</returns>
         public BaseResponseModel Update(CourseDTO course);
+
+        /// <summary>
+        /// Gets All Course List
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        public CourseListGetResponseModel GetAll();
     }
 }

@@ -23,7 +23,7 @@ namespace KUSYS_Demo.Business
                 cfg.CreateMap<StudentCourse, StudentCourseDTO>()
                 .ForMember(dest => dest.CourseName, act => act.MapFrom(src => src.Course.Name))
                 .ForMember(dest => dest.StudentName, act => act.MapFrom(src => string.Concat(src.Student.Name, " ", src.Student.SurName)));
-                
+                cfg.CreateMap<StudentCourseDTO, StudentCourse>();
             });
             
             var mapper = new AutoMapper.Mapper(config);

@@ -9,7 +9,6 @@ export class StudentCourseMatchedList extends Component {
 
     getList = async () => {
         let response = await axios.get("https://localhost:7212/api/StudentCourse/GetList");
-        // dispatch({type: "STUDENT_COURSE_LIST", payload: response.data.list})
         this.setState({
             ...this.state,
             studentCourseList: response.data.list

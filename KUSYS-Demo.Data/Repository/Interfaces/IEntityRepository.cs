@@ -24,11 +24,13 @@ namespace KUSYS_Demo.Data.Repository.Interfaces
 
         T Get(Expression<Func<T, bool>> Filter);
         void Add(T entity);
+        void Add(List<T> entity);
         Task<bool> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
 
         void Update(T entity);
 
         void Delete(T entity);
+        void Delete(List<T> entity);
     }
 }

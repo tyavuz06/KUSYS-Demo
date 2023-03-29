@@ -117,5 +117,29 @@ namespace KUSYS_Demo.API.Controllers
                     return NotFound();
             }
         }
+
+        /// <summary>
+        /// Gets AllStudent-Course Matches For a Student
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>IActionResult</returns>
+        [HttpGet]
+        [Route("GetListForStudent")]
+        public IActionResult GetListForStudent(int id)
+        {
+            var response = _studentCourseBusiness.GetListForStudent(id);
+
+            switch (response.Code)
+            {
+                case (int)SystemConstans.CODES.SUCCESS:
+                    return Ok(response);
+                case (int)SystemConstans.CODES.NOTFOUND:
+                    return NotFound(response);
+                case (int)SystemConstans.CODES.SYSTEMERROR:
+                    return StatusCode(500, response);
+                default:
+                    return NotFound();
+            }
+        }
     }
 }

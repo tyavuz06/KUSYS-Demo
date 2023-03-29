@@ -15,6 +15,10 @@ namespace KUSYS_Demo.Data
                 context.Students.AddRange(SeedStudents());
                 context.Database.Migrate();
                 context.SaveChanges();
+               
+                context.StudentCourses.AddRange(SeedSelectedCourses());
+                context.SaveChanges();
+                
             }
         }
 
@@ -36,6 +40,18 @@ namespace KUSYS_Demo.Data
             var list = new List<Student>();
             list.AddRange(new List<Student>() {
                 new Student() { Name = "TURGUT YAVUZ", SurName = "ÜNLÜ", IdentityNo = "11122233344",  BirthDate = new DateTime()}
+            });
+
+            return list;
+        }
+
+        private List<StudentCourse> SeedSelectedCourses()
+        {
+            var list = new List<StudentCourse>();
+            list.AddRange(new List<StudentCourse>() {
+                new StudentCourse() { CourseId = 1, StudentId = 1},
+                new StudentCourse() { CourseId = 3, StudentId = 1},
+                new StudentCourse() { CourseId = 4, StudentId = 1}
             });
 
             return list;

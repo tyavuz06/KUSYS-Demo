@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import { StudentList } from './components/StudentList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import StudentCourseMatchedList from './components/StudentCourseMatchedList';
-import AddStudent from './components/AddStudent';
+import StudentCourseMatch from './components/StudentCourseMatch';
 
 class App extends Component {
   render() {
@@ -16,7 +16,7 @@ class App extends Component {
           <Routes>
             <Route path='/' Component={StudentList} />
             <Route path='/matchList' Component={StudentCourseMatchedList} />
-            <Route path='/test' Component={AddStudent} />
+            <Route path='/match' Component={StudentCourseMatch} />
           </Routes>
         </div>
       </BrowserRouter>

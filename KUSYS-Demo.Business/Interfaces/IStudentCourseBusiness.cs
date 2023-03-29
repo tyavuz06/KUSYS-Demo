@@ -31,5 +31,11 @@ namespace KUSYS_Demo.Business.Interfaces
         /// </summary>
         /// <returns>StudentCourseGetListResponseModel</returns>
         public StudentCourseGetListResponseModel GetList();
+
+        /// <summary>
+        /// Gets All Student-Course Match List For A Student
+        /// </summary>
+        /// <returns>StudentCourseGetListResponseModel</returns>
+        public StudentCourseGetListResponseModel GetListForStudent(int id);
     }
 }

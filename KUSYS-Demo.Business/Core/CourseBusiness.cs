@@ -85,5 +85,30 @@ namespace KUSYS_Demo.Business.Core
 
             return baseResponseModel;
         }
+
+        public CourseListGetResponseModel GetAll()
+        {
+            var responseModel = new CourseListGetResponseModel();
+
+            try
+            {
+                var list = _service.GetListWithoutTask();
+
+                if (list != null)
+                {
+                    responseModel.List = _mapper.AutoMapper.Map<List<Course>, List<CourseDTO>>(list);
+                    responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
+                }
+                else
+                    responseModel.SetCode(Common.SystemConstans.CODES.NOTFOUND);
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                responseModel.SetCode(Common.SystemConstans.CODES.SYSTEMERROR);
+            }
+
+            return responseModel;
+        }
     }
 }

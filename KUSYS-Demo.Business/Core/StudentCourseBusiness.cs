@@ -22,8 +22,49 @@ namespace KUSYS_Demo.Business.Core
 
             try
             {
-                var entity = _mapper.AutoMapper.Map<StudentCourseDTO, StudentCourse>(model);
-                _service.Add(entity);
+                var existData = _service.GetListWithoutTask(x => x.StudentId == model.StudentId);
+                var addedIds = model.SelectedCourses.Where(x => !existData.Any(y => y.CourseId == x)).ToList();
+                var deletedDatas = existData.Where(x => !model.SelectedCourses.Any(y => y == x.CourseId)).ToList();
+
+                if (existData.Count() == 0)
+                {
+                    var entityList = new List<StudentCourse>();
+
+                    model.SelectedCourses.ToList().ForEach(id =>
+                    {
+                        entityList.Add(new StudentCourse()
+                        {
+                            CourseId = id,
+                            StudentId = model.StudentId
+                        });
+                    });
+
+                    _service.Add(entityList);
+                }
+                else
+                {
+                    //{1,2,3}   {1,3,4}
+                    if (addedIds.Count() > 0)
+                    {
+                        var entityList = new List<StudentCourse>();
+
+                        addedIds.ForEach(id =>
+                        {
+                            entityList.Add(new StudentCourse()
+                            {
+                                CourseId = id,
+                                StudentId = model.StudentId
+                            });
+                        });
+
+                        _service.Add(entityList);
+                    }
+
+                    if (deletedDatas.Count() > 0)
+                        _service.Delete(deletedDatas);
+                }
+
+
                 baseResponseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
             }
             catch (Exception ex)
@@ -98,8 +139,36 @@ namespace KUSYS_Demo.Business.Core
                 {
 
                     var mapped = _mapper.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);
-                    responseModel.List = mapped.GroupBy(x => new { x.StudentId, x.StudentName }, x => x.CourseName, (key, g) => new { StudentId = key.StudentId, StudentName = key.StudentName, List = g.ToList() }) ;
-                    
+                    responseModel.List = mapped.GroupBy(x => new { x.StudentId, x.StudentName }, x => x.CourseName, (key, g) => new { StudentId = key.StudentId, StudentName = key.StudentName, List = g.ToList() });
+
+                    responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
+                }
+                else
+                    responseModel.SetCode(Common.SystemConstans.CODES.NOTFOUND);
+            }
+            catch (Exception ex)
+            {
+                //log ex
+                responseModel.SetCode(Common.SystemConstans.CODES.SYSTEMERROR);
+            }
+
+            return responseModel;
+        }
+
+        public StudentCourseGetListResponseModel GetListForStudent(int id)
+        {
+            var responseModel = new StudentCourseGetListResponseModel();
+
+            try
+            {
+                var list = _service.EagerLoadingWithParams(x => x.StudentId == id, x => x.Student, x => x.Course);
+
+                if (list != null)
+                {
+
+                    var mapped = _mapper.AutoMapper.Map<List<StudentCourse>, List<StudentCourseDTO>>(list);
+                    responseModel.List = mapped.GroupBy(x => new { x.StudentId, x.StudentName }, x => x.CourseName, (key, g) => new { StudentId = key.StudentId, StudentName = key.StudentName, List = g.ToList() });
+
                     responseModel.SetCode(Common.SystemConstans.CODES.SUCCESS);
                 }
                 else

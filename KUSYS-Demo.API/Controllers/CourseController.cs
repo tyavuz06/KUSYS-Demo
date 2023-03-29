@@ -2,10 +2,13 @@
 using KUSYS_Demo.Common;
 using Microsoft.AspNetCore.Mvc;
 using KUSYS_Demo.Business.Interfaces;
+using KUSYS_Demo.Business.Core;
 
 namespace KUSYS_Demo.API.Controllers
 {
-    public class CourseController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CourseController : ControllerBase
     {
         private readonly ICourseBusiness _courseBusiness;
 
@@ -90,6 +93,30 @@ namespace KUSYS_Demo.API.Controllers
             }
 
             return StatusCode(200, "Model Is Not Valid");
+        }
+
+        /// <summary>
+        /// Gets All Course List
+        /// </summary>
+        /// <param></param>
+        /// <returns>IActionResult</returns>
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult GetAll()
+        {
+            var response = _courseBusiness.GetAll();
+
+            switch (response.Code)
+            {
+                case (int)SystemConstans.CODES.SUCCESS:
+                    return Ok(response);
+                case (int)SystemConstans.CODES.NOTFOUND:
+                    return NotFound(response);
+                case (int)SystemConstans.CODES.SYSTEMERROR:
+                    return StatusCode(500, response);
+                default:
+                    return NotFound();
+            }
         }
     }
 }

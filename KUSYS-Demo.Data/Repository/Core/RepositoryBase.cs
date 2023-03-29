@@ -105,6 +105,25 @@ namespace KUSYS_Demo.Data.Repository.Core
             }
         }
 
+        public void Add(List<TEntity> entity)
+        {
+            using (TContext context = new TContext())
+            {
+                try
+                {
+                    context.AddRange(entity);
+                    //context.Entry(entity).State = EntityState.Added;
+                    context.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
+            }
+        }
+
         public async Task<bool> AddAsync(TEntity entity)
         {
             using (TContext context = new TContext())
@@ -153,6 +172,16 @@ namespace KUSYS_Demo.Data.Repository.Core
             using (TContext context = new TContext())
             {
                 context.Entry(entity).State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
+        public void Delete(List<TEntity> entity)
+        {
+            using (TContext context = new TContext())
+            {
+                //context.Entry(entity).State = EntityState.Deleted;
+                context.RemoveRange(entity);
                 context.SaveChanges();
             }
         }

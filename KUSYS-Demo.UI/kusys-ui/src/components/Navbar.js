@@ -29,7 +29,7 @@ export class Navbar extends Component {
                                     <Link to="/matchList" className="nav-link " aria-current="page">Öğrenci Ders Seçim Listesi</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/test" className="nav-link " aria-current="page">Öğrenci Ders Seçimi</Link>
+                                    <Link to="/match" className="nav-link " aria-current="page">Öğrenci Ders Seçimi</Link>
                                 </li>
 
                                 {/* <li class="nav-item">
